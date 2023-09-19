@@ -1,48 +1,63 @@
 #include "main.h"
 /**
- * _printf - function to print char to stdout
- * @*format: pointer to string
- * a: character to be printed
- * strg: string to be printed
- * @format: string to be printed
+ * _printf - function to print
+ * @*format: format string
+ * @format: format string
+ * @*str: string to be printed
  *
- * Return: 0 if successful and -1 on error
+ * Return: no of chars
  */
+int _printf(const char *format, ...);
 int _printf(const char *format, ...)
 {
-	va_list argn;
-	unsigned int a;
-	int strg = 0;
-	int count = 0;
+	va_list arg_list;
+	int print_count = 0;
 
-	va_start(argn, *format);
+	va_start(arg_list, format);
 
-	for(a = 0; format[a] != '\0';  a++)
+	while (*format)
 	{
-		if (format[a] != '%')
+	if (*format != '%')
+	{
+		write(1, format, 1);
+		print_count++;
+	}
+	else
+	{
+		format++;
+		if (*format == '%')
 		{
-			_put(format[a]);
+		write(1, "%", 1);
+		print_count++;
+		}
+		else if (*format == 'c')
+		{
+		char c = va_arg(arg_list, int);
+
+		write(1, &c, 1);
+		print_count++;
+		}
+		else if (*format == 's')
+		{
+		char *str = va_arg(arg_list, char *);
+
+		if (str)
+		{
+			write(1, str, strlen(str));
+			print_count += strlen(str);
 		}
 		else
 		{
-			if (format[a + 1] ==  '%')
-			{
-				_put('%');
-			}
-			else if (format[a] == '%' && format[a + 1] == 'c')
-			{
-				_put(va_arg(argn, int));
-				a++;
-			}
-			else if (format[a + 1] == 's')
-			{
-				strg = _putstr(va_arg(argn, char*));
-				a++;
-				count += (strg - 1);
-			}
+			write(1, "(null)", 6);
+			print_count += 6;
 		}
-		count += 1;;
 	}
-	va_end(argn);
-	return (count);
+	}
+	format++;
+	}
+
+	va_end(arg_list);
+
+	return (print_count);
 }
+

@@ -3,11 +3,12 @@ int _putstr(char *c)
 {
 	int count = 0;
 
-	for (c)
+	for (int count = 0; c[count] != '\0'; count++)
 	{
-	if (count = 0; c[count] != '\0'; count++)
+	if (count == 0; c[count] != '\0'; count++)
 	{
 		_put(c[count]);
+	}
 	}
 	return (count);
 }
