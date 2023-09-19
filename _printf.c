@@ -1,57 +1,48 @@
 #include "main.h"
 /**
  * _printf - function to print char to stdout
- * @*format:pointer to string
- * *c: character to be printed
- * *str: string to be printed
+ * @*format: pointer to string
+ * a: character to be printed
+ * strg: string to be printed
  * @format: string to be printed
  *
  * Return: 0 if successful and -1 on error
  */
-int _printf(const char *format, ...);
 int _printf(const char *format, ...)
 {
-	va_list arg_num;
-	int print_char = 0;
+	va_list argn;
+	unsigned int a;
+	int strg = 0;
+	int count = 0;
 
-	if (format == NULL)
+	va_start(argn, *format);
+
+	for(a = 0; format[a] != '\0';  a++)
 	{
-		return (-1);
-	}
-
-	va_start(arg_num, *format);
-
-	while (format)
-	{
-		if (*format != '%')
+		if (format[a] != '%')
 		{
-			write(1, format, 1);
-			print_char++;
+			_put(format[a]);
 		}
 		else
 		{
-			format++;
-			if (*format ==  '%')
+			if (format[a + 1] ==  '%')
 			{
-				write(1, format, 1);
+				_put('%');
 			}
-			else if (*format == 'c')
+			else if (format[a] == '%' && format[a + 1] == 'c')
 			{
-				char c = va_arg(arg_num, int);
-
-				write(1, &c, 1);
-				print_char++;
+				_put(va_arg(argn, int));
+				a++;
 			}
-			else if (*format == 's')
+			else if (format[a + 1] == 's')
 			{
-				char *str = va_arg(arg_num, char*);
-
-				write(1, str, strlen(str));
-				print_char += strlen(str);
+				strg = _putstr(va_arg(argn, char*));
+				a++;
+				count += (strg - 1);
 			}
 		}
-		format++;
+		count += 1;;
 	}
-	va_end(arg_num);
-	return (print_char);
+	va_end(argn);
+	return (count);
 }
