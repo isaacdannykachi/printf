@@ -1,13 +1,14 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <unistd.h>
 #include <stdarg.h>
-#include <string.h>
+#include <unistd.h>
 
-int _put(char c);
-int _putstr(char *c);
+void printf_c(va_list args, int *print_count);
+void printf_s(va_list args, int *print_count);
+void printf_d(va_list args, int *print_count);
+void printf_i(va_list args, int *print_count);
 
 int _printf(const char *format, ...);
 
-#endif
+#endif /* MAIN_H */
