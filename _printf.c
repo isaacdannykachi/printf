@@ -33,7 +33,10 @@ int _printf(const char *format, ...)
 		}
 		else if (*format == 's') {
 		printf_s(arg_list, &print_count);
-		} 
+		}
+		else if (*format == 'b') {
+		print_bn(arg_list, &print_count);
+		}
 	else if (*format == 'd' || *format == 'i') 
 	{
 	printf_d(arg_list, &print_count);
