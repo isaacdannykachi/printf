@@ -2,9 +2,10 @@
 #include <unistd.h>
 
 /**
- * print_bn - Convert and prints ubsigned binary
+ * print_bn - Convert and print unsigned binary
  * @arg_list: va_list containing arguments
  * @print_count: pointer to print count
+ *
  * Return: void
  */
 void print_bn(va_list arg_list, int *print_count)
@@ -13,10 +14,22 @@ void print_bn(va_list arg_list, int *print_count)
 	char bin_str[33];
 	int num_len = 0;
 	int i;
+	int msb_found = 0;
 
 	for (i = 31; i >= 0; i--)
 	{
-		bin_str[num_len++] = ((num >> i) & 1) ? '1' : '0';
+		char digit = ((num >> i) & 1) ? '1' : '0';
+
+		if (digit == '1' || msb_found)
+		{
+			bin_str[num_len++] = digit;
+			msb_found = 1;
+		}
+	}
+
+	if (num_len == 0)
+	{
+		bin_str[num_len++] = '0';
 	}
 
 	bin_str[num_len] = '\0';

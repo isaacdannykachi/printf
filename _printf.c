@@ -7,6 +7,7 @@
  *
  * Return: no of chars
  */
+int _printf(const char *format, ...);
 int _printf(const char *format, ...)
 {
 	va_list arg_list;
@@ -24,20 +25,24 @@ int _printf(const char *format, ...)
 	else
 		{
 		format++;
-		if (*format == '%') {
+		if (*format == '%')
+		{
 		write(1, "%", 1);
 		print_count++;
 		}
-		else if (*format == 'c') {
+		else if (*format == 'c')
+		{
 		printf_c(arg_list, &print_count);
 		}
-		else if (*format == 's') {
+		else if (*format == 's')
+		{
 		printf_s(arg_list, &print_count);
 		}
-		else if (*format == 'b') {
+		else if (*format == 'b')
+		{
 		print_bn(arg_list, &print_count);
 		}
-	else if (*format == 'd' || *format == 'i') 
+	else if (*format == 'd' || *format == 'i')
 	{
 	printf_d(arg_list, &print_count);
 		}
@@ -47,5 +52,5 @@ int _printf(const char *format, ...)
 
 	va_end(arg_list);
 
-	return print_count;
+	return (print_count);
 }

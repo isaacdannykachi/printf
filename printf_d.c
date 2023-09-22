@@ -2,17 +2,14 @@
 #include <unistd.h>
 /**
  * printf_d - prints integer
- * @num: variable
- * @is_negative: variable
- * @num_len: variable
- * @num_str: array of characters
- * @divisor: variable
+ * @print_count: variables
+ * @arg_list: va_list for arguments
  * Return: integer
  */
 
-void printf_d(va_list args, int *print_count)
+void printf_d(va_list arg_list, int *print_count)
 {
-	int num = va_arg(args, int);
+	int num = va_arg(arg_list, int);
 	char num_str[12];
 	int is_negative = 0;
 	int num_len = 0;
@@ -33,7 +30,9 @@ void printf_d(va_list args, int *print_count)
 	while (divisor > 0)
 	{
 	int digit = num / divisor;
-	if (digit > 0 || num_len > 0) {
+
+	if (digit > 0 || num_len > 0)
+	{
 	num_str[num_len++] = '0' + digit;
 	}
 	num %= divisor;
