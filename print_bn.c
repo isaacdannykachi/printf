@@ -18,18 +18,18 @@ void print_bn(va_list arg_list, int *print_count)
 
 	for (i = 31; i >= 0; i--)
 	{
-		char digit = ((num >> i) & 1) ? '1' : '0';
+	char digit = ((num >> i) & 1) ? '1' : '0';
 
-		if (digit == '1' || msb_found)
-		{
-			bin_str[num_len++] = digit;
-			msb_found = 1;
-		}
+	if (digit == '1' || msb_found)
+	{
+	bin_str[num_len++] = digit;
+	msb_found = 1;
+	}
 	}
 
 	if (num_len == 0)
 	{
-		bin_str[num_len++] = '0';
+	bin_str[num_len++] = '0';
 	}
 
 	bin_str[num_len] = '\0';

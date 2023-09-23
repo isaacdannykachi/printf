@@ -42,6 +42,22 @@ int _printf(const char *format, ...)
 		{
 		print_bn(arg_list, &print_count);
 		}
+		else if (*format == 'u')
+	{
+	print_u(arg_list, &print_count);
+	}
+	else if (*format == 'o')
+	{
+	print_o(arg_list, &print_count
+	}
+	else if (*format == 'x')
+	{
+	print_x(arg_list, &print_count);
+	}
+	else if (*format == 'X')
+	{
+	print_X(arg_list, &print_count);
+	}
 	else if (*format == 'd' || *format == 'i')
 	{
 	printf_d(arg_list, &print_count);
