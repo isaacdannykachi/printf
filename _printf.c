@@ -58,6 +58,10 @@ int _printf(const char *format, ...)
 	{
 	print_X(arg_list, &print_count);
 	}
+	else if (*format == 'S') 
+		{
+		print_S(arg_list, &print_count);
+		}
 	else if (*format == 'd' || *format == 'i')
 	{
 	printf_d(arg_list, &print_count);

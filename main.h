@@ -12,6 +12,7 @@ void print_u(va_list arg_list, int *print_count);
 void print_o(va_list arg_list, int *print_count);
 void print_x(va_list arg_list, int *print_count);
 void print_X(va_list arg_list, int *print_count);
+void print_S(va_list arg_list, int *print_count);
 
 int _printf(const char *format, ...);
 
